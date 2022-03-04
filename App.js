@@ -1,13 +1,16 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config()
 const mongoose = require("mongoose")
 const cors = require("cors");
+const passport = require("passport")
 
 const userRoute = require("./routes/userRoute");
 const authRoute = require("./routes/authRoute");
 const productRoute = require("./routes/productRoute");
 const cartRoute = require("./routes/cartRoute");
-dotenv.config()
+const initPassport = require("./config/passport.Config");
+
 
 const app = express();
 
@@ -15,6 +18,8 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+initPassport()
+app.use(passport.initialize())
 
 
 
