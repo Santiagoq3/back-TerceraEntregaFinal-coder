@@ -4,10 +4,10 @@ const cartSchema = Schema({
     timestamp:{
          type : Date, default: Date.now 
     },
-    productos:{
+    products:{
         type: [{
             type: Schema.Types.ObjectId,
-            ref: "Producto"
+            ref: "Product"
         }],
         default: []
        
