@@ -12,6 +12,11 @@ const cartSchema = Schema({
         default: []
        
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
 
 })
 

@@ -15,11 +15,22 @@ const addProductCartController = (req,res)=>{
 
 const createCartController = async(req,res)=>{
 
+    const {id} = req.params
+
     data = {
         timestamp: Date.now(),
-        products: []
-
+        products: [],
+        user: id
     }
+
+    const existCart = await Cart.findOne({user: id})
+    if(existCart){
+        return res.json({
+            msg: "ya existe el carrito"
+        })
+    }
+
+    
     const cart = new Cart(data)
 
 

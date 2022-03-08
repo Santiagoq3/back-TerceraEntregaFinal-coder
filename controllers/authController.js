@@ -76,18 +76,10 @@ const loginUser = async(req,res)=>{
    
 }
 
-const logoutUser = (req,res)=>{
-
-
-    res.status(200).json({
-        msg: "logout"
-    })
-}
 
 
 module.exports = {
 
     createUser,
     loginUser,
-    logoutUser
 }

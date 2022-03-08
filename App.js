@@ -10,6 +10,7 @@ const authRoute = require("./routes/authRoute");
 const productRoute = require("./routes/productRoute");
 const cartRoute = require("./routes/cartRoute");
 const initPassport = require("./config/passport.Config");
+const orderRoute = require("./routes/orderRoute");
 
 
 const app = express();
@@ -29,6 +30,7 @@ app.use("/user",userRoute)
 app.use("/auth",authRoute)
 app.use("/product",productRoute)
 app.use("/cart",cartRoute)
+app.use("/order",orderRoute)
 
 app.get("/", (req,res)=>{
 

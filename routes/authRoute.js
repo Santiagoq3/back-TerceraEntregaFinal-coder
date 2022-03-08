@@ -11,7 +11,6 @@ authRoute.post("/register",passportAuth("register"), createUser)
 
 authRoute.post("/login", passportAuth("login"),loginUser)
 
-authRoute.post("/logout", logoutUser)
 
 
 

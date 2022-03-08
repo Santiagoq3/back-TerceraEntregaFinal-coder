@@ -35,8 +35,8 @@ const initPassport= ()=>{
             return done(null,result);
 
         } catch (error) {
-             console.log(err);
-            return done(err);
+             console.log(error);
+            return done(error);
         }
     }))
 

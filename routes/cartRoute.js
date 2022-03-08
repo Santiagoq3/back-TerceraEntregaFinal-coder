@@ -6,12 +6,12 @@ const { addProductCartController, createCartController, deleteProductsCartContro
 const cartRoute = express.Router();
 
 
-cartRoute.post("/addProduct", addProductCartController)
+cartRoute.post("/addproduct", addProductCartController)
 
-cartRoute.post("/createCart", createCartController)
+cartRoute.post("/createcart/:id", createCartController)
 
 
-cartRoute.delete("/deleteProductsCart", deleteProductsCartController)
+cartRoute.delete("/deleteproductscart", deleteProductsCartController)
 
 
 
