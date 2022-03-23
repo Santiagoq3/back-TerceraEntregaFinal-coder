@@ -1,10 +1,10 @@
 const passport = require("passport");
 const local = require("passport-local");
 const User = require("../models/user");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const { createLogger } = require("./winston");
 
-
-
+const logger = createLogger()
 const LocalStrategy = local.Strategy
 const initPassport= ()=>{
 
@@ -16,6 +16,11 @@ const initPassport= ()=>{
         const {name,email} = req.body;
 
 
+        const existUser = await User.findOne({email});
+        console.log(existUser)
+        if(existUser){
+            return done(null,false,{msg:"el email ya existe"})
+        }
         try {
 
             const data = {
@@ -35,7 +40,7 @@ const initPassport= ()=>{
             return done(null,result);
 
         } catch (error) {
-             console.log(error);
+             logger.warn(error)
             return done(error);
         }
     }))
@@ -46,13 +51,14 @@ const initPassport= ()=>{
             //     return done(null,{id:0,role:"admin"})
             // }
             const user = await User.findOne({email: username});
-            console.log(user)
+            logger.info(user)
             if(!user) return done(null,false,{messages:"No se encontro el usuario"})
 
             const isValidPassword = bcrypt.compareSync(password,user.password)
             if(!isValidPassword) return done(null,false,{messages:"La contraseña es incorrecta"})
             return done(null,user);
         }catch(error){
+            logger.warn(error)
             return done(error);
         }
     }))

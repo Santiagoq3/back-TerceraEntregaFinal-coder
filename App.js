@@ -11,7 +11,9 @@ const productRoute = require("./routes/productRoute");
 const cartRoute = require("./routes/cartRoute");
 const initPassport = require("./config/passport.Config");
 const orderRoute = require("./routes/orderRoute");
+const { createLogger } = require("./config/winston");
 
+const logger = createLogger()
 
 const app = express();
 
@@ -49,13 +51,14 @@ try {
     })
 
 
-    console.log("conectado a mongodb")
+    logger.info("Conectado a la base de datos")
 } catch (error) {
-    console.log("Error, no se puedo conectar a la base de datos");
-    console.log(error);
+    logger.warn("No se puedo conectar a la base de datos")
+
+    logger.warn(error)
     process.exit()
 }
 
 app.listen(process.env.PORT,()=>{
-    console.log("Puerto conectado en " + process.env.PORT)
+    logger.info(`conectado al puerto ${process.env.PORT}`)
 })

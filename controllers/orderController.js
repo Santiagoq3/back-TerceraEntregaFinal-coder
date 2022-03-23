@@ -34,6 +34,7 @@ const Order = require("../models/order")
 
 
     const orders = await Order.find({_id: id})
+    .populate("user","name")
 
 
     res.status(200).json({

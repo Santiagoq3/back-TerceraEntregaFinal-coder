@@ -1,11 +1,12 @@
 const User = require("../models/user")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const { createLogger } = require("../config/winston")
 
+const logger = createLogger()
 const createUser = async(req,res)=>{
 
     // const {name,email,password} = req.body;
-
 
     // if(!name || !email || !password){
     //     return res.status(400).json({
@@ -29,15 +30,11 @@ const createUser = async(req,res)=>{
     
     // await user.save()
 
-
     res.status(200).json({
         msg: "Usuario creado correctamente",
         ok: true
     })
 
-
-
-  
 }
 
 
@@ -56,7 +53,7 @@ const loginUser = async(req,res)=>{
     }, (err, token)=>{
 
         if(err){
-            console.log(err)
+            
             return res.status(400).json({
                 msg: "no pudo verificarse",
                 ok: false
@@ -72,8 +69,6 @@ const loginUser = async(req,res)=>{
 
     })
 
-   
-   
 }
 
 
